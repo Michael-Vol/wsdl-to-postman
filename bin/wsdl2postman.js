@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+
+const { log } = require('console');
+
 /* eslint-disable no-restricted-modules */
 var program = require('commander'),
   Converter = require('../index.js'),
@@ -22,7 +25,8 @@ var program = require('commander'),
 function parseOptions(value) {
   let definedOptions = value.split(','),
     parsedOptions = {};
-
+  definedOptions.push('resolveRemoteRefs=true');
+  console.log("Resolve Remote Refs Enabled: ", true);
   definedOptions.forEach((definedOption) => {
     let option = definedOption.split('=');
 
@@ -40,7 +44,6 @@ function parseOptions(value) {
       console.warn('\x1b[33m%s\x1b[0m', 'Warning: Invalid option supplied ', option[0]);
     }
   });
-
   return parsedOptions;
 }
 
